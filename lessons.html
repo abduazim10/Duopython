@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="padding: 20px;">
+    <div class="pcmainclass">
+        <div class="pc-menu">
+            <div style="width: 100%;">
+                <h1 class="pcmenu_h1">DuoPython</h1>
+                <div class="pcmenu-div">
+                    <a href="pcabinet.html" style="text-decoration: none;" class="pcmenu-a">
+                        <button class="pcmenu-btn">Главная</button>
+                    </a>
+                    <a href="lessons.html" style="text-decoration:none;"class="pcmenu-a">
+                        <button class="pcmenu-btn1">Уроки</button>
+                    </a>
+                    <!-- <a href="achievements.html" style="text-decoration:none;"class="pcmenu-a">
+                        <button class="pcmenu-btn">Достижения</button>
+                    </a> -->
+                </div>
+            </div>
+            
+            <h2 class="pcmenu-h2">Выйти</h2>
+        </div>
+        <div class="content1">
+        <header class="pc-header">
+            <h2 class="pchead-h2">Уроки</h2>
+            <div class="pchead-div">
+                <img src="./images/logo.png" alt="Аватар пользователя" class="pchead-profileimg">
+                <p class="pchead-p">Имя пользователя</p>
+            </div>
+        </header>
+        <main class="pc-main">
+            <section class="lessons-section1">
+                <img src="./images/logo.png" alt="" class="lessons-profileimg">
+                <div class="lessons-sec1btndivs">
+                    <div class="lessons-sec1btndiv">
+                        <h2 class="lessons-profile-h2">Завершено: 46%</h2>
+                    </div>
+                    <div class="lessons-sec1btndiv">
+                        <h2 class="lessons-profile-h2">Последний урок: 1.1</h2>
+                    </div>
+                </div>
+            </section>
+            <section class="lessons-mainsection">
+
+                <button id="leftBtn" class="slider-btn left" onclick="slideLessons(-1)">❮</button>
+
+                <div class="lessons-wrapper">
+                    <div class="lessons-slider" id="lessonSlider">
+
+                        <div class="lesson-div">
+                            <div class="lesson-div-ps">
+                                <p class="lesson-number">1.1</p>
+                                <p class="lesson-title">Знакомство с Python</p>
+                            </div>
+                            <button class="lesson-btn">40%</button>
+                        </div>
+                        <div class="lesson-div-unactive">
+                            <div class="lesson-div-ps">
+                                <p class="lesson-number">1.2</p>
+                                <p class="lesson-title">Знакомство с Python</p>
+                            </div>
+                            <button class="lesson-btn-unactive">Закрыт</button>
+                        </div>
+                        <!-- <div class="lesson-div">
+                            <div class="lesson-div-ps">
+                                <p class="lesson-number">1.3</p>
+                                <p class="lesson-title">Знакомство с Python</p>
+                            </div>
+                            <button class="lesson-btn">40%</button>
+                        </div>
+                        <div class="lesson-div">
+                            <div class="lesson-div-ps">
+                                <p class="lesson-number">1.4</p>
+                                <p class="lesson-title">Знакомство с Python</p>
+                            </div>
+                            <button class="lesson-btn">40%</button>
+                        </div>
+                        <div class="lesson-div">
+                            <div class="lesson-div-ps">
+                                <p class="lesson-number">1.5</p>
+                                <p class="lesson-title">Знакомство с Python</p>
+                            </div>
+                            <button class="lesson-btn">40%</button>
+                        </div> -->
+
+                        <!-- другие уроки -->
+
+                    </div>
+                </div>
+
+                <button id="rightBtn" class="slider-btn right" onclick="slideLessons(1)" >❯</button>
+
+            </section>
+        </main>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в личный кабинет</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">DuoPython</div>
+        <div class="nav-buttons">
+            <a href="register.html" class="login">Регистрация</a>
+            <a href="index.html" class="register">Главная страница</a>
+        </div>
+    </header>
+    <main class="login-main">
+        <div class="login-container">
+            <h1 class="logo" style="color: black; text-align: center;">Логин</h1>
+            <form action="login.html" method="POST" class="login-form">
+                <div class="username-field">
+                    <!-- <label for="username" style="font-size: 20px; font-weight: 700;">Username</label> -->
+                    <input type="text" id="username" placeholder="Имя пользователя" name="username" required>
+                </div>
+                <div class="password-field">
+                    <!-- <label for="password" style="font-size: 20px; font-weight: 700;">Password</label> -->
+                    <input type="password" id="password" placeholder="Пароль" name="password"  required>
+                </div>
+                <button type="submit" class="login_button">Войти</button>
+            </form>
+        </div>
+        
+    </main>
+</body>
+</html>
