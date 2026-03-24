@@ -63,4 +63,5 @@ function slideLessons(direction){
 
 updateSliderButtons()
 // Slider для уроков
-// Работа с API
+
+

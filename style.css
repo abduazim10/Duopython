@@ -413,6 +413,15 @@ footer {
     font-weight: 600;
     margin: 0;
 }
+.menu_a1{
+    width: 100%;
+    font-size: 22px;
+    text-align: start;
+    color: white;
+    font-family: Nunito, sans-serif;
+    font-weight: 600;
+    margin: 0;
+}
 .pcmainclass{
     display: flex;
 }
@@ -536,7 +545,8 @@ footer {
 
 }
 .lessons-sec1btndiv{
-    width: 242px;
+    /* width: 242px; */
+    padding: 0px 10px;
     height: 69px;
     background-color: #EBEBEB;
     display: flex;
@@ -573,6 +583,19 @@ footer {
 .lesson-btn{
     width: 126px;
     height: 36px;
+    background-color: #141416;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-family: Nunito, sans-serif;
+    cursor: pointer;
+    outline: none;  
+}
+.lesson-btn1{
+    width: 126px;
+    height: 36px;
+    padding: 5px 10px;
     background-color: #141416;
     color: white;
     border: none;
@@ -672,4 +695,44 @@ footer {
     flex: 1;
     padding: 21px 0px 29px 0px ;
     height: calc(100vh-42px);
+}
+
+
+/* Lesson Css */
+.lesson-container{
+    margin: 15px;
+    padding: 10px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    background-color: #EBEBEB;
+}
+#lesson-number{
+    font-family: Nunito, sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0;
+}
+#lesson-title{
+    font-family: Nunito, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 20px;
+}
+#lesson-theory{
+    font-family: Nunito, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #4C4C4E;
+    width: 80%;
+    height: 100%;
+    padding: 10px;
+}
+#test-title{
+    font-family: Nunito, sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0;
 }
