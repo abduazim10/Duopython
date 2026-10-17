@@ -233,6 +233,15 @@ header {
     font-family: 'Nunito', sans-serif;
     font-weight: 600;
 }
+#email{
+    width: 300px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+    font-size: 15px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+}
 #username{
     width: 300px;
     padding: 12px;
