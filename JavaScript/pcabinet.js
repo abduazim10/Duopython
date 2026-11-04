@@ -1,27 +1,18 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const token = localStorage.getItem("access");
+    if (!requireAuth()) return;
 
-    if (!token) {
-        window.location.href = "/login.html";
-        return;
-    }
+    const nameEl = document.querySelector(".pchead-p");
+    nameEl.textContent = localStorage.getItem("username") || "";
 
     try {
-        const res = await fetch("http://127.0.0.1:8000/api/me/", {
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        });
-
-        if (!res.ok) throw new Error();
-
+        const res = await apiFetch("/api/me/");
+        if (!res.ok) return;
         const user = await res.json();
-
-        document.querySelector(".pchead-p").textContent = user.username;
-        
+        nameEl.textContent = user.username;
+        localStorage.setItem("username", user.username);
     } catch (error) {
+        // Если токен недействителен, apiFetch сам отправит на страницу входа.
+        // Если сервер просто недоступен, оставляем сохранённое имя.
         console.error(error);
-        localStorage.removeItem("access");
-        window.location.href = "/login.html";
     }
 });

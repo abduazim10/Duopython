@@ -1,42 +1,38 @@
-const token = localStorage.getItem("access");
-const params = new URLSearchParams(window.location.search);
-const bookId = params.get("id");
+if (requireAuth()) {
+    const bookId = new URLSearchParams(window.location.search).get("id");
+    if (!bookId) window.location.href = "books.html";
 
-const title = document.getElementById("book-title");
-const author = document.getElementById("book-author");
-const image = document.getElementById("book-image");
-const description = document.getElementById("book-description");
-const downloadBtn = document.getElementById("download-btn");
+    const title = document.getElementById("book-title");
+    const author = document.getElementById("book-author");
+    const image = document.getElementById("book-image");
+    const description = document.getElementById("book-description");
+    const downloadBtn = document.getElementById("download-btn");
 
-fetch(`http://127.0.0.1:8000/api/books/${bookId}/`, {
-    headers: {
-        "Authorization": `Bearer ${token}`
-    }
-})
-.then(res => res.json())
-.then(data => {
-    if (data.error) {
-        alert("Книга не найдена");
-        return;
-    }
-    console.log(data);
-    title.textContent = data.title;
-    author.textContent = "Автор: " + (data.author || "Неизвестен");
-    description.textContent = data.description || "";
+    apiFetch(`/api/books/${encodeURIComponent(bookId)}/`)
+        .then(res => res.ok ? res.json() : Promise.reject(new Error("Книга не найдена")))
+        .then(data => {
+            title.textContent = data.title;
+            author.textContent = "Автор: " + (data.author || "Неизвестен");
+            description.textContent = data.description || "";
 
-    if (data.cover_image) {
-        image.src = data.cover_image;
-    }
+            image.alt = data.title;
+            if (data.cover_image && safeUrl(data.cover_image)) {
+                image.src = safeUrl(data.cover_image);
+            }
 
-    // 👇 делаем кнопку скачивания
-    if (data.pdf_file) {
-        downloadBtn.href = data.pdf_file;
-        downloadBtn.setAttribute("download", ""); // заставляет скачивать
-    } else {
-        downloadBtn.style.display = "none";
-    }
-})
-.catch(err => {
-    console.error(err);
-    alert("Ошибка загрузки книги");
-});
+            if (data.pdf_file && safeUrl(data.pdf_file)) {
+                downloadBtn.href = safeUrl(data.pdf_file);
+                downloadBtn.setAttribute("download", "");
+            } else {
+                downloadBtn.style.display = "none";
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            if (err.message !== "unauthorized") {
+                title.textContent = "Книга не найдена";
+                downloadBtn.style.display = "none";
+                image.style.display = "none";
+            }
+        });
+}

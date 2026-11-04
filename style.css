@@ -430,6 +430,7 @@ footer {
     font-family: Nunito, sans-serif;
     font-weight: 600;
     margin: 0;
+    text-decoration: none;
 }
 .pcmainclass{
     display: flex;
@@ -673,7 +674,8 @@ footer {
 
 .lessons-wrapper{
     overflow: hidden;
-    width: 850px; /* 3 карточки */
+    flex: 0 1 850px; /* 3 карточки; на узких экранах блок сужается */
+    min-width: 0;
 }
 
 .lessons-slider{
@@ -702,6 +704,7 @@ footer {
 .content1{
     margin-left: 328px;
     flex: 1;
+    min-width: 0; /* чтобы блок уроков сужался, а не растягивал страницу */
     padding: 21px 0px 29px 0px ;
     height: calc(100vh-42px);
 }

@@ -1,67 +1,60 @@
-// Slider для уроков
-let currentSlide = 0
+// Слайдер уроков: листает «страницами» по числу карточек, которые помещаются на экране
+let currentSlide = 0;
 
-const slider = document.getElementById("lessonSlider")
-const leftbtn = document.getElementById("leftBtn")
-const rightbtn = document.getElementById("rightBtn")
+const slider = document.getElementById("lessonSlider");
+const leftbtn = document.getElementById("leftBtn");
+const rightbtn = document.getElementById("rightBtn");
 
-const visibleLessons = 3
-
-
-function getLessonWidth(){
-
-    const lesson = slider.children[0]
-    const lessonWidth = lesson.offsetWidth
-
-    const sliderStyles = window.getComputedStyle(slider)
-    const gap = parseInt(sliderStyles.gap)
-
-    return lessonWidth + gap
+// Сколько карточек помещается в ширину блока (на широком экране 3, на узком меньше)
+function getVisible() {
+    const step = getLessonWidth();
+    if (!step) return 3;
+    const gap = parseInt(window.getComputedStyle(slider).gap) || 0;
+    return Math.max(1, Math.floor((slider.parentElement.clientWidth + gap) / step));
 }
 
-
-function updateSliderButtons(){
-
-    const totalLessons = slider.children.length
-    const maxSlide = Math.ceil(totalLessons / visibleLessons) - 1
-
-    if(totalLessons <= visibleLessons){
-        leftbtn.style.display = "none"
-        rightbtn.style.display = "none"
-        slider.style.justifyContent = "center"
-        return
-    }
-
-    leftbtn.style.opacity = currentSlide === 0 ? "0.5" : "1"
-    rightbtn.style.opacity = currentSlide === maxSlide ? "0.5" : "1"
+function getLessonWidth() {
+    const lesson = slider.children[0];
+    if (!lesson) return 0;
+    const gap = parseInt(window.getComputedStyle(slider).gap) || 0;
+    return lesson.offsetWidth + gap;
 }
 
-
-function slideLessons(direction){
-
-    const lessonWidth = getLessonWidth()
-
-    const totalLessons = slider.children.length
-    const maxSlide = Math.ceil(totalLessons / visibleLessons) - 1
-
-    currentSlide += direction
-
-    if(currentSlide < 0){
-        currentSlide = 0
-    }
-
-    if(currentSlide > maxSlide){
-        currentSlide = maxSlide
-    }
-
-    slider.style.transform =
-        `translateX(-${currentSlide * lessonWidth * visibleLessons}px)`
-
-    updateSliderButtons()
+function getMaxSlide() {
+    return Math.max(0, Math.ceil(slider.children.length / getVisible()) - 1);
 }
 
+function updateSliderButtons() {
+    const total = slider.children.length;
 
-updateSliderButtons()
-// Slider для уроков
+    if (total <= getVisible()) {
+        leftbtn.style.display = "none";
+        rightbtn.style.display = "none";
+        slider.style.justifyContent = "center";
+        return;
+    }
 
+    // уроков больше трёх: кнопки должны быть видны (раньше они навсегда оставались скрытыми)
+    leftbtn.style.display = "";
+    rightbtn.style.display = "";
+    slider.style.justifyContent = "";
+    leftbtn.style.opacity = currentSlide === 0 ? "0.5" : "1";
+    rightbtn.style.opacity = currentSlide === getMaxSlide() ? "0.5" : "1";
+}
 
+function slideLessons(direction) {
+    currentSlide = Math.min(Math.max(currentSlide + direction, 0), getMaxSlide());
+    slider.style.transform = `translateX(-${currentSlide * getLessonWidth() * getVisible()}px)`;
+    updateSliderButtons();
+}
+
+// Вызывается после того, как уроки загружены с сервера
+function resetSlider() {
+    currentSlide = 0;
+    slider.style.transform = "";
+    updateSliderButtons();
+}
+window.resetSlider = resetSlider;
+
+updateSliderButtons();
+window.addEventListener("resize", resetSlider);
