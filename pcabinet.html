@@ -35,10 +35,15 @@
             </div>
         </header>
         <main class="pc-main">
-            <section class="hero" style="margin-bottom: 30px; height: 188px; padding: 0;">
-                <h1>Учись основы Python легко и весело 🚀</h1>
-                <p>Интерактивные уроки, задания и сертификаты</p>
-                
+            <section class="welcome-card" id="welcome">
+                <div class="welcome-text">
+                    <h1 id="welcome-title">Привет!</h1>
+                    <p id="welcome-sub">Загружаем ваш прогресс…</p>
+                    <div class="welcome-track" role="progressbar" aria-label="Прогресс обучения" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                        <div class="welcome-bar" id="welcome-bar"></div>
+                    </div>
+                </div>
+                <a href="lessons.html" id="continue-btn" class="welcome-btn">Продолжить обучение</a>
             </section>
             <section class="pcmain-section">
                 <h2 class="pcmain-h2">Библиотека</h2>
@@ -46,7 +51,7 @@
                     <a href="books.html" style="text-decoration: none;" class="pcmain-a">
                         <div class="pcmaina_divs">
                             <p class="pcmaina-p1">Книги</p>
-                            <p class="pcmaina-p2">Читай более 50книг</p>
+                            <p class="pcmaina-p2">Читай более 50 книг</p>
                         </div>
                         <div class="pcmaina-imgdiv">
                             <img src="./images/Pythonbook.png" alt="Книги" class="pcmaina-img3">
@@ -63,7 +68,7 @@
                     </a>
                     <a href="musics.html"  style="text-decoration: none;"  class="pcmain-a">
                         <div class="pcmaina_divs">
-                            <p class="pcmaina-p1">Музыки</p>
+                            <p class="pcmaina-p1">Музыка</p>
                             <p class="pcmaina-p2">Слушай более 50 песен</p>
                         </div>
                         <div class="pcmaina-imgdiv">
@@ -109,7 +114,7 @@
                     <a href="https://t.me/Az1zov1ch_A" target="_blank"  style="text-decoration: none;"  class="pcmain-a">
                         <div class="pcmaina_divs">
                             <p class="pcmaina-p1">Администратор</p>
-                            <p class="pcmaina-p2" >Связатся с нами</p>
+                            <p class="pcmaina-p2" >Связаться с нами</p>
                         </div>
                         <div class="pcmaina-imgdiv">
                             <img src="./images/telegram.png" alt="Telegram" class="pcmaina-img3">

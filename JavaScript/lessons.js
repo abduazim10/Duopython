@@ -21,6 +21,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             resultsMap[r.lesson_id] = r.total > 0 ? Math.round((r.score / r.total) * 100) : 0;
         });
 
+        const total = lessonsData.lessons.length;
+        const done = lessonsData.lessons.filter(l => l.id in resultsMap).length;
+        document.getElementById("lessons-profile-h2").textContent =
+            `Пройдено тестов: ${done} из ${total}`;
+
         slider.innerHTML = "";
 
         if (!lessonsData.lessons.length) {

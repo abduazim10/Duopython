@@ -34,23 +34,40 @@ if (requireAuth()) {
 
             q.answers.forEach(a => {
                 const label = document.createElement("label");
+                label.className = "answer-option";
                 const input = document.createElement("input");
                 input.type = "radio";
                 input.name = "q" + q.id;
                 input.value = a.id;
                 label.appendChild(input);
-                label.appendChild(document.createTextNode(" " + a.text));
+                label.appendChild(document.createTextNode(a.text));
+                input.addEventListener("change", () => {
+                    div.querySelectorAll(".answer-option").forEach(l => l.classList.remove("selected"));
+                    label.classList.add("selected");
+                    updateProgress();
+                });
                 div.appendChild(label);
-                div.appendChild(document.createElement("br"));
             });
 
             container.appendChild(div);
         });
 
+        updateProgress();
+
         if (!data.questions.length) {
             container.textContent = "В этом тесте пока нет вопросов.";
             submitBtn.style.display = "none";
         }
+    }
+
+    // ссылка «Назад» ведёт к уроку, а счётчик показывает, на сколько вопросов уже есть ответ
+    const backLink = document.getElementById("back-link");
+    if (lessonId) backLink.href = `lesson.html?id=${encodeURIComponent(lessonId)}`;
+
+    function updateProgress() {
+        const total = document.querySelectorAll(".question").length;
+        const done = document.querySelectorAll(".question input:checked").length;
+        document.getElementById("test-progress").textContent = total ? `Отвечено: ${done} из ${total}` : "";
     }
 
     // отправка теста
@@ -104,9 +121,9 @@ if (requireAuth()) {
             submitBtn.style.display = "none";
             const link = document.createElement("a");
             link.href = "lessons.html";
-            link.textContent = " К урокам";
-            link.className = "menu_a1";
-            link.style.color = "black";
+            link.textContent = "К урокам";
+            link.className = "lesson-btn1";
+            link.style.cssText = "display:inline-block;box-sizing:border-box;margin-top:12px;text-align:center;text-decoration:none;line-height:26px;";
             box.appendChild(document.createElement("br"));
             box.appendChild(link);
         }

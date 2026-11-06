@@ -153,7 +153,7 @@ header {
 .logo {
     font-size: 28px;
     font-weight: 900;
-    color: #58CC02;
+    color: #141416;
 }
 
 .nav-buttons a {
@@ -165,12 +165,15 @@ header {
 }
 
 .login {
-    color: #58CC02;
+    color: #141416;
 }
 
 .register {
-    background: #58CC02;
+    background: #141416;
     color: white;
+}
+.register:hover {
+    background: #4C4C4E;
 }
 .login-container{
     width: 400px;
@@ -206,9 +209,13 @@ header {
     padding: 13px 40px;
     border-radius: 20px;
     font-weight: 700;
-    background: #58CC02;
+    background: #141416;
     color: white;
     border: none;
+    cursor: pointer;
+}
+.login_button:hover {
+    background: #4C4C4E;
 }
 .password-field {
     margin-bottom: 20px;
@@ -268,7 +275,7 @@ header {
 }
 
 .start-btn {
-    background: #58CC02;
+    background: #141416;
     color: white;
     padding: 18px 40px;
     font-size: 18px;
@@ -279,7 +286,7 @@ header {
 }
 
 .start-btn:hover {
-    background: #46a302;
+    background: #4C4C4E;
 }
 
 .section {
@@ -430,7 +437,6 @@ footer {
     font-family: Nunito, sans-serif;
     font-weight: 600;
     margin: 0;
-    text-decoration: none;
 }
 .pcmainclass{
     display: flex;
@@ -747,4 +753,367 @@ footer {
     font-size: 30px;
     font-weight: 700;
     margin: 0;
+}
+
+
+/* Страница теста */
+.test-container h1{
+    font-family: Nunito, sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+}
+.test-progress{
+    font-family: Nunito, sans-serif;
+    margin: 0 0 18px 0;
+    color: #4C4C4E;
+    font-weight: 600;
+}
+.test-container .question{
+    margin-bottom: 20px;
+}
+.test-container .question h3{
+    font-family: Nunito, sans-serif;
+    font-size: 20px;
+    margin: 0 0 10px 0;
+}
+.answer-option{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    border: 2px solid transparent;
+    border-radius: 15px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-family: Nunito, sans-serif;
+    font-weight: 600;
+}
+.answer-option:hover{
+    border-color: #c9c9cb;
+}
+.answer-option.selected{
+    border-color: #141416;
+}
+.answer-option input{
+    accent-color: #141416;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+}
+#test-result{
+    font-family: Nunito, sans-serif;
+    font-size: 18px;
+}
+
+/* Блок приветствия в кабинете */
+.welcome-card{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    background-color: #EBEBEB;
+    border-radius: 20px;
+    padding: 28px 32px;
+    margin: 24px 0 30px 0;
+}
+.welcome-text{
+    flex: 1;
+    min-width: 0;
+}
+.welcome-card h1{
+    font-family: Nunito, sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    color: #141416;
+    margin: 0 0 6px 0;
+    overflow-wrap: anywhere;
+}
+.welcome-card p{
+    font-family: Nunito, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #4C4C4E;
+    margin: 0 0 16px 0;
+}
+.welcome-track{
+    height: 10px;
+    background-color: #d3d3d5;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.welcome-bar{
+    height: 100%;
+    width: 0;
+    background-color: #141416;
+    border-radius: 5px;
+    transition: width 0.6s ease;
+}
+.welcome-btn{
+    flex-shrink: 0;
+    background-color: #141416;
+    color: white;
+    font-family: Nunito, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+.welcome-btn:hover{
+    background-color: #4C4C4E;
+}
+
+/* Текст урока: длинные строки и картинки не должны вылезать за экран */
+#lesson-theory{
+    overflow-wrap: anywhere;
+}
+#lesson-theory img{
+    max-width: 100%;
+    height: auto;
+}
+#lesson-theory pre{
+    overflow-x: auto;
+}
+
+/* ===== Планшеты и телефоны ===== */
+@media (max-width: 900px) {
+    /* только у страниц, где отступ задан прямо в теге body (кабинет, книги, видео и т.д.) */
+    body[style*="padding"] {
+        padding: 12px !important;
+    }
+
+    /* Кабинет: боковое меню становится верхней панелью */
+    .pcmainclass {
+        flex-direction: column;
+        height: auto;
+    }
+    .pc-menu {
+        position: static;
+        width: auto;
+        height: auto;
+        padding: 16px 20px;
+        margin-bottom: 14px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px 16px;
+    }
+    .pcmenu_h1 {
+        font-size: 24px;
+        text-align: left;
+        margin: 0 0 12px 0;
+    }
+    .pcmenu-div {
+        flex-direction: row;
+        gap: 10px;
+    }
+    .pcmenu-btn,
+    .pcmenu-btn1 {
+        height: 44px;
+        width: auto;
+        padding: 0 20px;
+        font-size: 16px;
+        border-radius: 14px;
+    }
+    .pcmenu-h2 {
+        width: auto;
+        font-size: 16px;
+    }
+    .menu_a1 {
+        width: auto;
+        font-size: 16px;
+    }
+    .content,
+    .content1 {
+        margin-left: 0;
+        height: auto;
+        padding: 4px 0 24px 0;
+    }
+    .pc-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Карточки разделов */
+    .pcmain-div1 {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    .pcmain-a {
+        width: calc(50% - 6px);
+        height: auto;
+        min-height: 100px;
+        box-sizing: border-box;
+        padding-bottom: 8px;
+    }
+    .pcmaina-imgdiv {
+        width: 100%;
+    }
+    /* карточки книг, видео и музыки лежат внутри ссылок: ширину задаём ссылке */
+    #booksContainer > a,
+    #videosContainer > a,
+    #musicsContainer > a {
+        width: calc(50% - 6px);
+    }
+    #booksContainer > a .pcmain-a,
+    #videosContainer > a .pcmain-a,
+    #musicsContainer > a .pcmain-a {
+        width: 100%;
+    }
+
+    /* Уроки: одна карточка на экран, стрелки по бокам */
+    .lessons-section1 {
+        margin-bottom: 30px;
+    }
+    .lessons-slider {
+        gap: 16px;
+    }
+    .lesson-div {
+        flex: 0 0 100%;
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        aspect-ratio: 250 / 220; /* те же пропорции, что на компьютере, чтобы картинка не обрезалась */
+        box-sizing: border-box;
+    }
+    .lessons-mainsection {
+        gap: 6px;
+    }
+
+    /* Приветствие в кабинете */
+    .welcome-card {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+        gap: 18px;
+        margin: 14px 0 22px 0;
+    }
+    .welcome-card h1 {
+        font-size: 24px;
+    }
+    .welcome-btn {
+        text-align: center;
+    }
+
+    /* Главная, вход, регистрация */
+    header {
+        padding: 12px 16px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .logo {
+        font-size: 22px;
+    }
+    .nav-buttons a {
+        margin-left: 6px;
+        padding: 8px 14px;
+        font-size: 14px;
+    }
+    .hero {
+        padding: 50px 16px;
+    }
+    .hero h1 {
+        font-size: 30px;
+    }
+    .hero p {
+        font-size: 16px;
+        margin-bottom: 28px;
+    }
+    .start-btn {
+        display: inline-block;
+        padding: 14px 28px;
+        font-size: 16px;
+    }
+    .section {
+        padding: 40px 16px;
+    }
+    .cards {
+        gap: 16px;
+    }
+    .card,
+    .review {
+        width: 100%;
+        max-width: 340px;
+        box-sizing: border-box;
+    }
+    footer {
+        padding: 20px 16px;
+        margin-top: 30px;
+    }
+    .login-main {
+        height: auto;
+        min-height: calc(100vh - 80px);
+        padding: 24px 16px;
+        box-sizing: border-box;
+    }
+    .login-container {
+        width: 100%;
+        max-width: 400px;
+        padding: 28px 20px;
+        box-sizing: border-box;
+    }
+    .username-field,
+    .password-field {
+        width: 100%;
+    }
+    #username,
+    #email,
+    #password {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .login_button {
+        font-size: 15px;
+    }
+
+    /* Урок и тест */
+    .lesson-container {
+        margin: 0;
+    }
+    #lesson-number {
+        font-size: 26px;
+    }
+    #lesson-video iframe {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    /* На маленьких экранах разделы идут в одну колонку */
+    .pcmain-a {
+        width: 100%;
+        min-height: 90px;
+    }
+    #booksContainer > a,
+    #videosContainer > a,
+    #musicsContainer > a {
+        width: 100%;
+    }
+    .pc-menu {
+        padding: 14px 16px;
+    }
+    .pcmenu-btn,
+    .pcmenu-btn1 {
+        padding: 0 16px;
+    }
+    .test-container h1 {
+        font-size: 24px;
+    }
+    .answer-option {
+        padding: 12px;
+    }
+}
+
+/* Длинные названия не должны вылезать за экран */
+#book-container,
+.pcmaina-p1,
+.pcmaina-p2 {
+    overflow-wrap: anywhere;
+}
+#book-container h1 {
+    margin-right: 0;
 }

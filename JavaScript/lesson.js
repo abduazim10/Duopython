@@ -61,10 +61,10 @@ function renderVideo(box, url) {
         return;
     }
     const iframe = document.createElement("iframe");
-    iframe.width = "600";
-    iframe.height = "340";
+    iframe.style.width = "100%";
+    iframe.style.maxWidth = "600px";
+    iframe.style.aspectRatio = "16 / 9";
     iframe.style.borderRadius = "15px";
-    iframe.style.maxWidth = "100%";
     iframe.src = `https://www.youtube.com/embed/${id}`;
     iframe.title = "Видео урока";
     iframe.frameBorder = "0";

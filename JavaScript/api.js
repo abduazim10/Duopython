@@ -87,6 +87,7 @@
 
     // Разрешаем только обычные ссылки http и https (защита от javascript: и т.п.)
     function safeUrl(url) {
+        if (!url) return "";
         try {
             const u = new URL(url, window.location.href);
             return (u.protocol === "http:" || u.protocol === "https:") ? u.href : "";
