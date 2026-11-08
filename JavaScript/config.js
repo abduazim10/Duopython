@@ -1,3 +1,3 @@
 // Адрес API. Если API размещён на сервере, замените значение на его адрес,
 // например: "https://api.example.com" (без слэша в конце).
-window.API_URL = "http://127.0.0.1:8000";
+window.API_URL = "https://duopython.pythonanywhere.com";
