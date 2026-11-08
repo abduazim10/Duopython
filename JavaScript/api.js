@@ -96,20 +96,26 @@
         }
     }
 
-    // Очистка HTML урока: убираем скрипты, iframe, обработчики событий и опасные ссылки.
-    // Для боевого сервера лучше дополнительно чистить HTML на стороне API.
+    // Очистка HTML урока: оставляем только обычное оформление текста.
+    // Удаляем скрипты, фреймы, формы, svg/math (через них делают обходы фильтров),
+    // обработчики событий (onclick и т.п.) и ссылки javascript:/data:.
+    // Для боевого сервера лучше дополнительно чистить HTML на стороне API (nh3 или bleach).
+    const BAD_TAGS = "script, style, iframe, frame, frameset, object, embed, applet, link, meta, base, form, " +
+        "noscript, template, svg, math, input, button, textarea, select, option";
+    const URL_ATTRS = ["href", "src", "xlink:href", "action", "formaction", "poster", "background", "ping", "data", "srcset", "srcdoc"];
+
     function safeHtml(html) {
         const doc = new DOMParser().parseFromString(String(html || ""), "text/html");
-        doc.querySelectorAll("script, style, iframe, object, embed, link, meta, base, form").forEach(function (el) {
-            el.remove();
-        });
+        doc.querySelectorAll(BAD_TAGS).forEach(function (el) { el.remove(); });
         doc.body.querySelectorAll("*").forEach(function (el) {
             Array.from(el.attributes).forEach(function (attr) {
                 const name = attr.name.toLowerCase();
-                const value = attr.value.trim().toLowerCase();
+                // значение без пробелов, переносов и управляющих символов, чтобы не прятать "java script:"
+                const value = attr.value.replace(/[\u0000-\u0020\u007f-\u009f]+/g, "").toLowerCase();
                 if (name.indexOf("on") === 0 ||
-                    ((name === "href" || name === "src" || name === "xlink:href" || name === "action") &&
-                        /^(javascript|data|vbscript):/.test(value.replace(/\s+/g, "")))) {
+                    attr.value.indexOf("</") !== -1 || // закрывающие теги внутри атрибута: приём для обхода фильтров
+                    (URL_ATTRS.indexOf(name) !== -1 && /^(javascript|data|vbscript):/.test(value)) ||
+                    (name === "style" && /javascript:|expression\(|url\(|@import/.test(value))) {
                     el.removeAttribute(attr.name);
                 }
             });

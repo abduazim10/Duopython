@@ -1117,3 +1117,8 @@ footer {
 #book-container h1 {
     margin-right: 0;
 }
+
+html,
+body {
+  overscroll-behavior-y:none;
+}
